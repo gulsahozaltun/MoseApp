@@ -1,0 +1,2 @@
+rootProject.name = "MoseApp"
+include ':app'
