@@ -9,7 +9,7 @@
     <string name="mail_account">Mail Account</string>
     <string name="password">Password</string>
     <string name="sign_up">Sign Up</string>
-    <string name="sign_upxp" >Please fill all fields!</string>
+    <string name="sign_upxp">Please fill all fields!</string>
     <string name="name_surname">Name Surname</string>
     <string name="phone">Phone Number</string>
 </resources>
