@@ -11,4 +11,8 @@ class SignUpFragmentViewModel:ViewModel() {
         Log.e("gelenlerr", mail_adres+sifre+ad_soyad+telefon)
     }
 
+
+
+
+
 }

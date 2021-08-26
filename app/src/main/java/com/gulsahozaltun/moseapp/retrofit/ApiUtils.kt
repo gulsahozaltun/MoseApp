@@ -12,6 +12,12 @@ class ApiUtils {
         fun getUsersDaoInterface(): UsersDaoInterface {
             return getClient(BASE_URL).create(UsersDaoInterface::class.java)
         }
+
+        fun getMosesDaoInterface(): MosesDaoInterface {
+            return getClient(BASE_URL).create(MosesDaoInterface::class.java)
+        }
+
+
     }
 
 

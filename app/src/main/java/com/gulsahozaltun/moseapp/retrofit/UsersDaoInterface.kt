@@ -17,7 +17,7 @@ interface UsersDaoInterface {
                @Field("ad_soyad") ad_soyad:String,
                @Field("telefon") telefon:String): Call<CRUDAnswer>
 
-    @POST("sign_in")
+    @POST("sign_in.php")
     @FormUrlEncoded
     fun signIn(@Field("mail_adres") mail_adres: String,
                @Field("sifre")sifre: String):Call<UsersAnswer>

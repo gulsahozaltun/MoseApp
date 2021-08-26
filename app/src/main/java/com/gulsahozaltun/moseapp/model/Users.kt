@@ -5,9 +5,12 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Users(
-    @SerializedName("ıd")
+    @SerializedName("giriskontrol")
     @Expose
-    var ıd : Int,
+    var giriskontrol : Int,
+    @SerializedName("id")
+    @Expose
+    var id : Int,
     @SerializedName("mail_adres")
     @Expose
     var mail_adres:String,

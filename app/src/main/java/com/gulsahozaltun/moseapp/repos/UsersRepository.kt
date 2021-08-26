@@ -13,22 +13,23 @@ import retrofit2.Response
 
 class UsersRepository {
     private val usersdao:UsersDaoInterface
-    val usersList:MutableLiveData<List<Users>>
+    var usersList:MutableLiveData<Users>
 
     init {
         usersdao= ApiUtils.getUsersDaoInterface()
         usersList = MutableLiveData()
     }
 
-    fun userData():MutableLiveData<List<Users>>{
-        return usersList
-    }
+
+
 
     fun addUser(mail_adres: String, sifre: String, ad_soyad: String, telefon: String){
         usersdao.signUp(mail_adres, sifre, ad_soyad, telefon).enqueue(object :Callback<CRUDAnswer>{
             override fun onResponse(call: Call<CRUDAnswer>?, response: Response<CRUDAnswer>?) {
                 Log.e("se=uccsadsdafa",response!!.body().toString())
                 Log.e("basariliii","Adadadafzhjhgfds")
+
+
             }
 
             override fun onFailure(call: Call<CRUDAnswer>?, t: Throwable?) {
@@ -38,20 +39,6 @@ class UsersRepository {
         })
     }
 
-    fun signUser(mail_adres: String,sifre: String){
-        usersdao.signIn(mail_adres, sifre).enqueue(object : Callback<UsersAnswer> {
-            override fun onResponse(call: Call<UsersAnswer>?, response: Response<UsersAnswer>?) {
-                val user= response!!.body().users
 
-
-                usersList.value=user
-            }
-
-            override fun onFailure(call: Call<UsersAnswer>?, t: Throwable?) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
 
 }

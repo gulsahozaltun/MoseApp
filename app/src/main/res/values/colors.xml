@@ -9,7 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#ff0037</color>
     <color name="white_color">#FFFFFFFF</color>
-    <color name="grey_sign"> #F0F0F0</color>
+    <color name="grey_sign">#F0F0F0</color>
+    <color name="grey_tint">#FF000000</color>
+    <color name="red_dark">#d30f0f</color>
+
+
 
 
 
