@@ -25,5 +25,15 @@ class MosesViewModel:ViewModel() {
         Log.e("eklenenler",mosetur+adi+turu+sure)
     }
 
+    fun favEkle(id:Int,fav:String){
+        repo.favEkle(id, fav)
+    }
+
+    fun favCikart(id:Int,fav: String){
+        repo.favCikart(id, fav)
+    }
+
+
+
 
 }

@@ -25,6 +25,12 @@ interface MosesDaoInterface {
                  @Field("hakkinda") hakkinda:String,
                  @Field("fragman_url") fragman_url:String,
                   @Field("yeni_mi") yeni_mi:String):Call<CRUDAnswer>
+
+    @POST("mose_fav.php")
+    @FormUrlEncoded
+    fun favDurum(
+        @Field("id") id: Int,
+        @Field("fav") fav:String) :Call<MosesAnswer>
 }
 
 

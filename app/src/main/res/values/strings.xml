@@ -12,4 +12,5 @@
     <string name="sign_upxp">Please fill all fields!</string>
     <string name="name_surname">Name Surname</string>
     <string name="phone">Phone Number</string>
+    <string name="fav_text">Your favorite movies</string>
 </resources>

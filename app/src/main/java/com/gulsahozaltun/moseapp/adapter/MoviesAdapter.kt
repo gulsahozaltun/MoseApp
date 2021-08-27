@@ -1,10 +1,17 @@
 package com.gulsahozaltun.moseapp.adapter
 
 import android.content.Context
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.gulsahozaltun.moseapp.R
 import com.gulsahozaltun.moseapp.databinding.MovieCardBinding
+import com.gulsahozaltun.moseapp.fragment.MainPageFragmentDirections
 import com.gulsahozaltun.moseapp.model.Moses
 import com.gulsahozaltun.moseapp.viewmodel.MosesViewModel
 import com.squareup.picasso.Picasso
@@ -37,6 +44,25 @@ class MoviesAdapter(var mContext: Context,
         view.movieObj=movie
         val url=movie.gorsel_url
         Picasso.get().load(url).into(view.imageView)
+        if(movie.fav=="1"){
+            view.button.setButtonDrawable(R.drawable.selector_two)
+
+
+        }
+        view.cardView.setOnClickListener {
+            val gecis=MainPageFragmentDirections.maintoDetail(movie)
+            Navigation.findNavController(it).navigate(gecis)
+        }
+
+        view.button.setOnClickListener {
+            if(movie.fav != "1"){
+                viewModel.favEkle(movie.id,"1")
+                val message= "Product added to fav"
+                Toast.makeText(mContext,message, Toast.LENGTH_SHORT).show()
+
+
+            }
+        }
     }
 
     override fun getItemCount(): Int {

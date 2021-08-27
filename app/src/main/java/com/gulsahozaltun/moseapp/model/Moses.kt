@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Moses(
+    @SerializedName("id")
+    @Expose
+    var id:Int,
     @SerializedName("mosetur")
     @Expose
     var mosetur:String,
@@ -38,9 +41,9 @@ data class Moses(
     @SerializedName("yeni_mi")
     @Expose
     var yeni_mi:String,
-/*    @SerializedName("fav")
+    @SerializedName("fav")
     @Expose
-    var fav:Int*/
+    var fav:String
 
 ):Serializable {
 }

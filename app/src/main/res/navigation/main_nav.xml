@@ -28,7 +28,11 @@
         android:id="@+id/mainPageFragment"
         android:name="com.gulsahozaltun.moseapp.fragment.MainPageFragment"
         android:label="fragment_main_page"
-        tools:layout="@layout/fragment_main_page" />
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/maintoDetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profilFragment"
         android:name="com.gulsahozaltun.moseapp.fragment.ProfilFragment"
@@ -44,4 +48,12 @@
         android:name="com.gulsahozaltun.moseapp.fragment.SeriesFragment"
         android:label="fragment_series"
         tools:layout="@layout/fragment_series" />
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.gulsahozaltun.moseapp.fragment.DetailMovieFragment"
+        android:label="DetailMovieFragment" >
+        <argument
+            android:name="movieObj"
+            app:argType="com.gulsahozaltun.moseapp.model.Moses" />
+    </fragment>
 </navigation>

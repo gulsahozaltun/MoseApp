@@ -43,6 +43,8 @@ class MainPageFragment : Fragment() {
             tasarim.newsAdapter=newsAdapter
         })
 
+
+
         return tasarim.root
     }
 
