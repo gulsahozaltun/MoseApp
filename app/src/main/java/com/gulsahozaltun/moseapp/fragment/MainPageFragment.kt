@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.gulsahozaltun.moseapp.R
 import com.gulsahozaltun.moseapp.adapter.MoviesAdapter
 import com.gulsahozaltun.moseapp.adapter.NewsAdapter
@@ -35,13 +36,22 @@ class MainPageFragment : Fragment() {
 
         })
 
+        tasarim.chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            if (tasarim.chip1.isChecked) {
 
-        viewModelNews.news.observe(viewLifecycleOwner,{
+              Navigation.findNavController(tasarim.chip1).navigate(R.id.mainPageFragment)
+            }
+            else if(tasarim.chip2.isChecked){
+                Navigation.findNavController(tasarim.chip1).navigate(R.id.seriesFragment)
 
-            newsl ->
-            newsAdapter= NewsAdapter(requireContext(),newsl,viewModelNews)
-            tasarim.newsAdapter=newsAdapter
-        })
+            }
+
+            else if(tasarim.chip3.isChecked){
+                Navigation.findNavController(tasarim.chip1).navigate(R.id.newsFragment)
+
+            }
+        }
+
 
 
 
@@ -55,6 +65,8 @@ class MainPageFragment : Fragment() {
         val temp2: NewsViewModel by viewModels()
         viewModelNews=temp2
     }
+
+
 
 
 }

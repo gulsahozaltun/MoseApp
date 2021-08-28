@@ -62,4 +62,10 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.2.0"
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //ViewPager2
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+    //circle
+    implementation "me.relex:circleindicator:2.1.6"
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
 }

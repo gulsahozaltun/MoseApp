@@ -3,11 +3,14 @@
 
     <item
         android:id="@+id/mainPageFragment"
-        android:icon="@drawable/ic_home" />
+        android:enabled="true"
+        android:icon="@drawable/home_selector" />
     <item
         android:id="@+id/favoritesFragment"
-        android:icon="@drawable/ic_ribbon" />
+        android:enabled="true"
+        android:icon="@drawable/selector_favorite" />
     <item
         android:id="@+id/profilFragment"
-        android:icon="@drawable/ic_profile" />
+        android:enabled="true"
+        android:icon="@drawable/selector_profil" />
 </menu>

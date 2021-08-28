@@ -16,12 +16,14 @@ class MosesRepository {
     private val moseList:MutableLiveData<List<Moses>>
     private val favList:MutableLiveData<List<Moses>>
     private val newItemsList : MutableLiveData<List<Moses>>
+    private val serieslist : MutableLiveData<List<Moses>>
 
     init {
         mosedao=ApiUtils.getMosesDaoInterface()
         moseList= MutableLiveData()
         newItemsList = MutableLiveData()
         favList= MutableLiveData()
+        serieslist=MutableLiveData()
         //newsList= MutableLiveData()
 
     }
@@ -38,12 +40,22 @@ class MosesRepository {
         return favList
     }
 
+    fun bringSeries():MutableLiveData<List<Moses>>{
+        return serieslist
+    }
+
     fun getAllMoses(){
         mosedao.allMoses().enqueue(object :retrofit2.Callback<MosesAnswer>{
             override fun onResponse(call: Call<MosesAnswer>?, response: Response<MosesAnswer>?) {
-                val list: List<Moses> = response!!.body().moses
-                moseList.value=list
-                Log.e("calisiyormu in Repo","we will see!!!!")
+                val movies= response!!.body().moses
+                val liste= mutableListOf<Moses>()
+
+                for (i in movies){
+                    if (i.mosetur == "film"){
+                        liste.add(i)
+                    }
+                }
+                moseList.value=liste
             }
 
             override fun onFailure(call: Call<MosesAnswer>?, t: Throwable?) {
@@ -137,6 +149,29 @@ class MosesRepository {
             }
 
         })
+    }
+
+    fun getSeries(){
+        mosedao.allMoses().enqueue(object :Callback<MosesAnswer>{
+            override fun onResponse(call: Call<MosesAnswer>?, response: Response<MosesAnswer>?) {
+                val seriesList= response!!.body().moses
+                val liste= mutableListOf<Moses>()
+                for(item in seriesList){
+                    if(item.mosetur=="dizi"){
+                        liste.add(item)
+                    }
+                }
+                serieslist.value=liste
+
+
+            }
+
+            override fun onFailure(call: Call<MosesAnswer>?, t: Throwable?) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
     }
 
 

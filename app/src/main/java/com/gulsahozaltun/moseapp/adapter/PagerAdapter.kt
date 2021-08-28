@@ -3,8 +3,11 @@ package com.gulsahozaltun.moseapp.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.gulsahozaltun.moseapp.databinding.NewsCardBinding
+import com.gulsahozaltun.moseapp.fragment.MainPageFragmentDirections
+import com.gulsahozaltun.moseapp.fragment.NewsFragmentDirections
 import com.gulsahozaltun.moseapp.model.Moses
 import com.gulsahozaltun.moseapp.viewmodel.NewsViewModel
 import com.squareup.picasso.Picasso
@@ -37,6 +40,11 @@ class PagerAdapter(
         view.newsObj = newsMovie
         val url = newsMovie.gorsel_url
         Picasso.get().load(url).into(view.categoryImage)
+
+        view.button4.setOnClickListener {
+            val gecis= NewsFragmentDirections.newstoDetail(newsMovie)
+            Navigation.findNavController(it).navigate(gecis)
+        }
 
     }
 

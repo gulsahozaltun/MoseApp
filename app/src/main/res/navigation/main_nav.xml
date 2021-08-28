@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/mainPageFragment">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/signInFragment"
@@ -23,7 +23,11 @@
         android:id="@+id/favoritesFragment"
         android:name="com.gulsahozaltun.moseapp.fragment.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/favoritetoDetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainPageFragment"
         android:name="com.gulsahozaltun.moseapp.fragment.MainPageFragment"
@@ -47,7 +51,11 @@
         android:id="@+id/seriesFragment"
         android:name="com.gulsahozaltun.moseapp.fragment.SeriesFragment"
         android:label="fragment_series"
-        tools:layout="@layout/fragment_series" />
+        tools:layout="@layout/fragment_series" >
+        <action
+            android:id="@+id/seriestoDetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailMovieFragment"
         android:name="com.gulsahozaltun.moseapp.fragment.DetailMovieFragment"
@@ -55,5 +63,13 @@
         <argument
             android:name="movieObj"
             app:argType="com.gulsahozaltun.moseapp.model.Moses" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.gulsahozaltun.moseapp.fragment.NewsFragment"
+        android:label="NewsFragment" >
+        <action
+            android:id="@+id/newstoDetail"
+            app:destination="@id/detailMovieFragment" />
     </fragment>
 </navigation>

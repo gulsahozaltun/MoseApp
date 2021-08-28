@@ -5,17 +5,23 @@ import androidx.lifecycle.ViewModel
 import com.gulsahozaltun.moseapp.model.Moses
 import com.gulsahozaltun.moseapp.repos.MosesRepository
 
-class NewsViewModel:ViewModel() {
-    val news: MutableLiveData<List<Moses>>
+class SeriesViewModel: ViewModel() {
+    val series: MutableLiveData<List<Moses>>
     private val repo= MosesRepository()
 
     init {
-        news=repo.bringNews()
-        loadNews()
+        series=repo.bringSeries()
+        loadSeries()
     }
 
-    fun loadNews(){
-        repo.getNewMovies()
+    fun loadSeries(){
+        repo.getSeries()
     }
+
+
+    fun favEkle(id:Int,fav:String){
+        repo.favEkle(id, fav)
+    }
+
 
 }

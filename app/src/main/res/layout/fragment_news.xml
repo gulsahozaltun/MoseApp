@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,14 +7,16 @@
 
     <data>
         <variable
-            name="seriesAdapter"
-            type="com.gulsahozaltun.moseapp.adapter.SeriesAdapter" />
+            name="newsAdapter"
+            type="com.gulsahozaltun.moseapp.adapter.PagerAdapter" />
+
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.SeriesFragment">
+        tools:context=".fragment.NewsFragment">
 
         <HorizontalScrollView
             android:id="@+id/horizontalScrollView"
@@ -25,7 +28,7 @@
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar5">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar4">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,28 +105,46 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar5"
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerr"
             android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adapter="@{newsAdapter}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"></androidx.viewpager2.widget.ViewPager2>
+
+<!--        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/circleIndicator3"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@color/red"
+            app:ci_drawable="@drawable/point"
+            app:ci_height="5dp"
+            android:gravity="center"
+            app:ci_drawable_unselected="@drawable/point"
+            app:ci_width="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPagerr" />-->
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar4"
+            android:layout_width="409dp"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:backgroundTint="@color/red"
+            android:background="@color/red"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="Series" />
+            app:title="Trending" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:adapter="@{seriesAdapter}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

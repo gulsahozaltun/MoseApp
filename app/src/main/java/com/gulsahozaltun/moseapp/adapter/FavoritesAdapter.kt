@@ -5,8 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.gulsahozaltun.moseapp.databinding.FavoritesCardBinding
+import com.gulsahozaltun.moseapp.fragment.FavoritesFragmentDirections
+import com.gulsahozaltun.moseapp.fragment.MainPageFragmentDirections
 import com.gulsahozaltun.moseapp.model.Moses
 import com.gulsahozaltun.moseapp.viewmodel.FavoritesViewModel
 import com.squareup.picasso.Picasso
@@ -40,6 +43,10 @@ class FavoritesAdapter(var mContext: Context,
         val url=movie.gorsel_url
         Picasso.get().load(url).into(view.imageView)
 
+        view.cardView.setOnClickListener {
+            val gecis= FavoritesFragmentDirections.favoritetoDetail(movie)
+            Navigation.findNavController(it).navigate(gecis)
+        }
 
         view.button.setOnClickListener {
             if (movie.fav == "1"){

@@ -1,5 +1,7 @@
 package com.gulsahozaltun.moseapp.fragment
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.annotation.NonNull
@@ -32,7 +34,23 @@ class DetailMovieFragment : Fragment() {
         val url=gelenSonuc.gorsel_url
         Picasso.get().load(url).into(tasarim.imageView2)
 
+        var imdb=gelenSonuc.imdb_puan.toFloat()
+        tasarim.imbd=imdb
 
+        tasarim.button3.setOnClickListener{
+            val ad= AlertDialog.Builder(requireContext())
+            ad.setMessage(" You are leaving the page !")
+            ad.setPositiveButton("Yes"){dialogInterface, i ->
+                val urlIntent = Intent(Intent.ACTION_VIEW)
+                urlIntent.data = Uri.parse(gelenSonuc.fragman_url)
+                requireContext().startActivity(urlIntent)
+            }
+            ad.setNegativeButton("No"){dialogInterface, i ->
+
+            }
+            ad.create().show()
+
+        }
 
 
 

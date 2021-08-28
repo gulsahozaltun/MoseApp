@@ -4,12 +4,10 @@
 
     <item
         android:drawable="@drawable/ic_bookmark"
-        android:state_checked="true"
-        />
+        android:state_checked="true"/>
     <item
         android:drawable="@drawable/ic_bookmark_three"
         android:state_checked="false"
-
         />
 
     <item
