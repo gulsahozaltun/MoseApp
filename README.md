@@ -8,6 +8,7 @@ Made with Kotlin, based on:
 - ViewPager2
 - SplashActivity
 - SharedPreferences
+- DataBinding
 
 ![Image of App](https://i.imgur.com/XmQpRUf.png)
 
