@@ -7,6 +7,7 @@ Made with Kotlin, based on:
 - RecyclerView
 - ViewPager2
 - SplashActivity
+- SharedPreferences
 
 ![Image of App](https://i.imgur.com/XmQpRUf.png)
 
