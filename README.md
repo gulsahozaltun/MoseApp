@@ -8,7 +8,7 @@ RecyclerView
 ViewPager2
 SplashActivity
 
-![Image of App](https://i.imgur.com/30lEkVr.png)
+![Image of App](https://i.imgur.com/XmQpRUf.png)
 
 ![Image of App](https://i.imgur.com/hai9C7f.png)
 
