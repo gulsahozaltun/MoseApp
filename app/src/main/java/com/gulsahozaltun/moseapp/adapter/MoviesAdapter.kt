@@ -18,9 +18,7 @@ import com.squareup.picasso.Picasso
 
 class MoviesAdapter(var mContext: Context,
                     var movieList: List<Moses>,
-                    var viewModel: MosesViewModel,
-
-                    )
+                    var clickListener: ButtonSetOnClickListener)
     : RecyclerView.Adapter<MoviesAdapter.CardDesignHolder>() {
 
         inner class CardDesignHolder(cardMoviesBinding:MovieCardBinding):
@@ -39,26 +37,25 @@ class MoviesAdapter(var mContext: Context,
     }
 
     override fun onBindViewHolder(holder: CardDesignHolder, position: Int) {
-        val movie=movieList.get(position)
-        val view=holder.cardDesignBinding
-        view.movieObj=movie
-        val url=movie.gorsel_url
+        val movie = movieList.get(position)
+        val view = holder.cardDesignBinding
+        view.movieObj = movie
+        val url = movie.gorsel_url
         Picasso.get().load(url).into(view.imageView)
         view.cardView.setOnClickListener {
-            val gecis=MainPageFragmentDirections.maintoDetail(movie)
+            val gecis = MainPageFragmentDirections.maintoDetail(movie)
             Navigation.findNavController(it).navigate(gecis)
         }
 
         view.button.setOnClickListener {
-            if(movie.fav != "1"){
-                viewModel.favEkle(movie.id,"1")
-                val message= "Added to fav!"
-                Toast.makeText(mContext,message, Toast.LENGTH_SHORT).show()
-
-
+            if (movie.fav != "1") {
+                clickListener.favEkle(movie.id, "1")
+                val message = "Added to fav!"
+                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 
     override fun getItemCount(): Int {
         return movieList.size

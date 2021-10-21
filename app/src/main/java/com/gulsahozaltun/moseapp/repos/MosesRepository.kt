@@ -47,7 +47,7 @@ class MosesRepository {
     fun getAllMoses(){
         mosedao.allMoses().enqueue(object :retrofit2.Callback<MosesAnswer>{
             override fun onResponse(call: Call<MosesAnswer>?, response: Response<MosesAnswer>?) {
-                val movies= response!!.body().moses
+                val movies= response!!.body()!!.moses
                 val liste= mutableListOf<Moses>()
 
                 for (i in movies){
@@ -83,7 +83,7 @@ class MosesRepository {
     fun getNewMovies(){
         mosedao.allMoses().enqueue(object :Callback<MosesAnswer>{
             override fun onResponse(call: Call<MosesAnswer>?, response: Response<MosesAnswer>?) {
-                val newslist= response!!.body().moses
+                val newslist= response!!.body()!!.moses
                 val liste= mutableListOf<Moses>()
                 for(item in newslist){
                     if(item.yeni_mi=="1"){
@@ -106,7 +106,7 @@ class MosesRepository {
     fun getFavMovies(){
         mosedao.allMoses().enqueue(object :Callback<MosesAnswer>{
             override fun onResponse(call: Call<MosesAnswer>?, response: Response<MosesAnswer>?) {
-                val favListesi= response!!.body().moses
+                val favListesi= response!!.body()!!.moses
                 val liste= mutableListOf<Moses>()
                 for (i in favListesi){
                     if (i.fav == "1"){
@@ -153,15 +153,18 @@ class MosesRepository {
 
     fun getSeries(){
         mosedao.allMoses().enqueue(object :Callback<MosesAnswer>{
-            override fun onResponse(call: Call<MosesAnswer>?, response: Response<MosesAnswer>?) {
-                val seriesList= response!!.body().moses
+            override fun onResponse(call: Call<MosesAnswer>, response: Response<MosesAnswer>) {
+                val seriesList= response.body()?.moses
                 val liste= mutableListOf<Moses>()
-                for(item in seriesList){
-                    if(item.mosetur=="dizi"){
-                        liste.add(item)
+                if(seriesList.isNullOrEmpty()){
+                        for(item in seriesList!!){
+                            if(item.mosetur=="dizi"){
+                                liste.add(item)
+                            }
+                        }
+                        serieslist.value=liste
                     }
-                }
-                serieslist.value=liste
+
 
 
             }

@@ -29,8 +29,8 @@ class SignInFragmentViewModel:ViewModel() {
     fun signUser(mail_adres: String,sifre: String){
         usersdao.signIn(mail_adres, sifre).enqueue(object : Callback<UsersAnswer> {
             override fun onResponse(call: Call<UsersAnswer>?, response: Response<UsersAnswer>?) {
-                val customer= response!!.body().user
-                for (i in customer){
+                val customer= response!!.body()?.user
+                for (i in customer!!){
                     if(i.giriskontrol==1){
                         usersList.value=i
                         Log.e("basardik beee", response.body().toString())

@@ -9,9 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.gulsahozaltun.moseapp.R
+import com.gulsahozaltun.moseapp.adapter.ButtonSetOnClickListener
 import com.gulsahozaltun.moseapp.adapter.MoviesAdapter
-import com.gulsahozaltun.moseapp.adapter.NewsAdapter
-import com.gulsahozaltun.moseapp.adapter.PagerAdapter
 import com.gulsahozaltun.moseapp.databinding.FragmentMainPageBinding
 import com.gulsahozaltun.moseapp.viewmodel.MosesViewModel
 import com.gulsahozaltun.moseapp.viewmodel.NewsViewModel
@@ -22,16 +21,29 @@ class MainPageFragment : Fragment() {
     private lateinit var viewModel:MosesViewModel
     private lateinit var viewModelNews:NewsViewModel
     private lateinit var adapter:MoviesAdapter
-    private lateinit var newsAdapter: NewsAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         tasarim=DataBindingUtil.inflate(inflater,R.layout.fragment_main_page, container, false)
 
+        return tasarim.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.mosesList.observe(viewLifecycleOwner,{
-            list ->
-            adapter= MoviesAdapter(requireContext(),list,viewModel)
+                list ->
+            val clickListener = object : ButtonSetOnClickListener {
+                override fun favEkle(id: Int, fav: String) {
+                    viewModel.favEkle(id,"1")
+                }
+
+                override fun favCikart(id: Int, fav: String) {
+                    TODO("Not yet implemented")
+                }
+            }
+            adapter= MoviesAdapter(requireContext(),list,clickListener)
             tasarim.adapter=adapter
 
         })
@@ -39,7 +51,7 @@ class MainPageFragment : Fragment() {
         tasarim.chipGroup.setOnCheckedChangeListener { group, checkedId ->
             if (tasarim.chip1.isChecked) {
 
-              Navigation.findNavController(tasarim.chip1).navigate(R.id.mainPageFragment)
+                Navigation.findNavController(tasarim.chip1).navigate(R.id.mainPageFragment)
             }
             else if(tasarim.chip2.isChecked){
                 Navigation.findNavController(tasarim.chip1).navigate(R.id.seriesFragment)
@@ -51,11 +63,6 @@ class MainPageFragment : Fragment() {
 
             }
         }
-
-
-
-
-        return tasarim.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

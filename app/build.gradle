@@ -38,6 +38,14 @@ android {
 }
 apply plugin: "androidx.navigation.safeargs.kotlin"
 dependencies {
+    def lifeCycleExtensionVersion = '1.1.1'
+    def supportVersion = '28.0.0'
+    def retrofitVersion = '2.3.0'
+    def glideVersion = '4.9.0'
+    def rxJavaVersion = '2.1.1'
+    def roomVersion = '2.2.3'
+    def navVersion = '2.2.1'
+    def preferencesVersion = '1.1.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -68,4 +76,6 @@ dependencies {
     //circle
     implementation "me.relex:circleindicator:2.1.6"
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+
+
 }

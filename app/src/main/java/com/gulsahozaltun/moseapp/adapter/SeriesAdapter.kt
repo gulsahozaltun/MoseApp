@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso
 
 class SeriesAdapter(var mContext: Context,
                     var seriesList: List<Moses>,
-                    var viewModel: SeriesViewModel): RecyclerView.Adapter<SeriesAdapter.CardDesignHolder>() {
+                    var clickListener: ButtonSetOnClickListener): RecyclerView.Adapter<SeriesAdapter.CardDesignHolder>() {
 
 
     inner class CardDesignHolder(cardSeriesBinding: SeriesCardBinding):
@@ -48,7 +48,7 @@ class SeriesAdapter(var mContext: Context,
 
         view.button.setOnClickListener {
             if(series.fav != "1"){
-                viewModel.favEkle(series.id,"1")
+                clickListener.favEkle(series.id,"1")
                 val message= " Added to fav!"
                 Toast.makeText(mContext,message, Toast.LENGTH_SHORT).show()
 

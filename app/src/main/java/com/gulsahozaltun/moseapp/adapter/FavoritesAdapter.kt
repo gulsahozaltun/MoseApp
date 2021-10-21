@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso
 
 class FavoritesAdapter(var mContext: Context,
                        var favList: List<Moses>,
-                       var viewModel: FavoritesViewModel
+                       var clickListener: ButtonSetOnClickListener
 ):RecyclerView.Adapter<FavoritesAdapter.CardDesignHolder>()
 
 {
@@ -50,8 +50,8 @@ class FavoritesAdapter(var mContext: Context,
 
         view.button.setOnClickListener {
             if (movie.fav == "1"){
-                viewModel.favCikart(movie.id,"0")
-                val message= "fav dan cikartildi"
+                clickListener.favCikart(movie.id,"0")
+                val message= "Removed from favorites!"
                 Toast.makeText(mContext,message, Toast.LENGTH_SHORT).show()
                 Log.e("fav durum new",movie.fav)
 

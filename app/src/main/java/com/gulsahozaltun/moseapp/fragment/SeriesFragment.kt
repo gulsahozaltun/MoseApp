@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.gulsahozaltun.moseapp.R
+import com.gulsahozaltun.moseapp.adapter.ButtonSetOnClickListener
 import com.gulsahozaltun.moseapp.adapter.MoviesAdapter
 import com.gulsahozaltun.moseapp.adapter.SeriesAdapter
 import com.gulsahozaltun.moseapp.databinding.FragmentSeriesBinding
@@ -26,10 +27,23 @@ class SeriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         tasarim=DataBindingUtil.inflate(inflater,R.layout.fragment_series, container, false)
+        return tasarim.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.series.observe(viewLifecycleOwner,{
                 list ->
-            adapterSeries= SeriesAdapter(requireContext(),list,viewModel)
+            val clickListener = object : ButtonSetOnClickListener {
+                override fun favEkle(id: Int, fav: String) {
+                    viewModel.favEkle(id,"1")
+                }
+
+                override fun favCikart(id: Int, fav: String) {
+                    TODO("Not yet implemented")
+                }
+            }
+            adapterSeries= SeriesAdapter(requireContext(),list,clickListener)
             tasarim.seriesAdapter=adapterSeries
 
         })
@@ -50,9 +64,6 @@ class SeriesFragment : Fragment() {
 
             }
         }
-
-
-        return tasarim.root
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

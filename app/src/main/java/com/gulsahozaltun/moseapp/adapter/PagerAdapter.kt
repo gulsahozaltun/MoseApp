@@ -16,7 +16,6 @@ import com.squareup.picasso.Picasso
 class PagerAdapter(
     var mContext: Context,
     var newsList: List<Moses>,
-    var viewModel: NewsViewModel,
 
     ): RecyclerView.Adapter<PagerAdapter.Pager2ViewHolder>() {
     inner class Pager2ViewHolder(pagerBinding:NewsCardBinding): RecyclerView.ViewHolder(pagerBinding.root){
@@ -25,8 +24,6 @@ class PagerAdapter(
             this.cardDesign=pagerBinding
         }
     }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Pager2ViewHolder{
         var layoutInflater = LayoutInflater.from(parent.context)

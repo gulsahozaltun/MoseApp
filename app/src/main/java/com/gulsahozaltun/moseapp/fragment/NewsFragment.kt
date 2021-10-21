@@ -9,14 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.gulsahozaltun.moseapp.R
-import com.gulsahozaltun.moseapp.adapter.MoviesAdapter
-import com.gulsahozaltun.moseapp.adapter.NewsAdapter
 import com.gulsahozaltun.moseapp.adapter.PagerAdapter
-import com.gulsahozaltun.moseapp.databinding.FragmentMainPageBinding
 import com.gulsahozaltun.moseapp.databinding.FragmentNewsBinding
-import com.gulsahozaltun.moseapp.viewmodel.MosesViewModel
 import com.gulsahozaltun.moseapp.viewmodel.NewsViewModel
-import kotlinx.android.synthetic.main.fragment_news.*
 
 
 class NewsFragment : Fragment() {
@@ -29,11 +24,15 @@ class NewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         tasarim=DataBindingUtil.inflate(inflater,R.layout.fragment_news, container, false)
+        return tasarim.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModelNews.news.observe(viewLifecycleOwner,{
 
                 newsl ->
-            newsAdapter= PagerAdapter(requireContext(),newsl,viewModelNews)
+            newsAdapter= PagerAdapter(requireContext(),newsl)
             tasarim.newsAdapter=newsAdapter
         })
 
@@ -53,10 +52,6 @@ class NewsFragment : Fragment() {
             }
 
         }
-
-        //tasarim.circleIndicator3.setViewPager(tasarim.viewPagerr)
-
-        return tasarim.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

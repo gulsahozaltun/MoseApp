@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.gulsahozaltun.moseapp.R
+import com.gulsahozaltun.moseapp.adapter.ButtonSetOnClickListener
 import com.gulsahozaltun.moseapp.adapter.FavoritesAdapter
 import com.gulsahozaltun.moseapp.adapter.MoviesAdapter
 import com.gulsahozaltun.moseapp.databinding.FragmentFavoritesBinding
@@ -26,23 +27,29 @@ class FavoritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         tasarim=DataBindingUtil.inflate(inflater,R.layout.fragment_favorites, container, false)
+        return tasarim.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val temp: FavoritesViewModel by viewModels()
+        viewModel=temp
         viewModel.favList.observe(viewLifecycleOwner,{
                 list ->
-            adapter= FavoritesAdapter(requireContext(),list,viewModel)
+            val clickListener = object : ButtonSetOnClickListener {
+                override fun favEkle(id: Int, fav: String) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun favCikart(id: Int, fav: String) {
+                    viewModel.favCikart(id,"0")
+                }
+            }
+            adapter= FavoritesAdapter(requireContext(),list,clickListener )
             tasarim.adapter=adapter
 
         })
 
-
-        return tasarim.root
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val temp: FavoritesViewModel by viewModels()
-        viewModel=temp
-    }
-
 
 }
